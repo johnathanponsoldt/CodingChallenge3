@@ -29,3 +29,23 @@ function findTopAndBottomPerformers(salespeople) {
       (calculateAverageSales(salesperson.sales) < calculateAverageSales(bottom.sales)) ? salesperson : bottom);
     return { topPerformer, bottomPerformer };
 }
+
+// Task 4: Combine Functions to Generate a Performance Report
+
+function generatePerformanceReport(salesData) {
+    const Report = salesData.map(salesperson => { 
+        const averageSales = calculateAverageSales(salesperson.sales);
+        const performanceRating = determinePerformanceRating(averageSales);
+        return {
+            name: salesperson.name,
+            averageSales,
+            performanceRating
+        };
+    });
+const { topPerformer, bottomPerformer } = findTopAndBottomPerformers(salesData);
+return {
+    report,
+    topPerformer: topPerformer.name,
+    bottomPerformer: bottomPerformer.name
+};
+}
